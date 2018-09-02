@@ -69,7 +69,7 @@ function shalat($keyword) {
 
 //show menu, saat join dan command /menu
 if ($type == 'join' || $command == '/menu') {
-    $text = "Assalamualaikum Kakak, aku adalah bot jadwal shalat, silahkan ketik\n\n/shalat <nama tempat>\n\nnanti aku bakalan kasih tahu jam berapa waktunya shalat ^_^";
+    $text = "Assalamualaikum Kakak";
     $balas = array(
         'replyToken' => $replyToken,
         'messages' => array(
@@ -78,63 +78,7 @@ if ($type == 'join' || $command == '/menu') {
                 'text' => $text
             )
         )
-    );
-}
-
-//pesan bergambar
-if($message['type']=='text') {
-	    if ($command == '/shalat') {
-
-        $result = shalat($options);
-        $balas = array(
-            'replyToken' => $replyToken,
-            'messages' => array(
-                array(
-                    'type' => 'text',
-                    'text' => $result
-                )
-            )
-        );
-    }
-
-}else if($message['type']=='sticker')
-{	
-	$balas = array(
-							'replyToken' => $replyToken,														
-							'messages' => array(
-								array(
-										'type' => 'text',									
-										'text' => 'Makasih Kak Stikernya ^_^'										
-									
-									)
-							)
-						);
-						
-}
-if (isset($balas)) {
-    $result = json_encode($balas);
-//$result = ob_get_clean();
-
-    file_put_contents('./balasan.json', $result);
-
-
-    $client->replyMessage($balas);
-}
-
-if($message['type']=='sticker')
-{	
-	$balas = array(
-							'UserID' => $profil->userId,	
-                                                        'replyToken' => $replyToken,							
-							'messages' => array(
-								array(
-										'type' => 'text',									
-										'text' => 'Terima Kasih Stikernya.'										
-									
-									)
-							)
-						);
-						
+    )
 }
 else
 $pesan=str_replace(" ", "%20", $pesan_datang);
